@@ -10,7 +10,8 @@ import java.util.List;
 
 @Service
 public class CarServiceImpl implements CarService {
-       private CarRepository carRepository;  // DB access layer
+    // create repository layer
+    private CarRepository carRepository;  // DB access layer
 
 
     @Autowired
@@ -24,11 +25,9 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public Car insertCar(Car car) {
-        if(car != null) {
-            return carRepository.save(car);
-        }
-        return null;
+    public String insertCar() {
+//        carRepository.save(null);
+        return "Hay from Service";
     }
 
 
