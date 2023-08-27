@@ -1,6 +1,10 @@
 package com.inventorycarsystem.carsystem.service;
 
+import com.inventorycarsystem.carsystem.model.Car;
+
+import java.util.List;
+
 public interface CarService {
-    public String getCar();
+    public List<Car> getCars();
     public String insertCar();
 }

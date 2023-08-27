@@ -2,19 +2,26 @@ package com.inventorycarsystem.carsystem.service.impl;
 
 import com.inventorycarsystem.carsystem.model.Car;
 import com.inventorycarsystem.carsystem.service.CarService;
-import com.inventorycarsystem.repository.CarRepository;
+import com.inventorycarsystem.carsystem.repository.CarRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.List;
 
 @Service
 public class CarServiceImpl implements CarService {
     // create repository layer
-    private CarRepository carRepository;
-    @Override
-    public String getCar() {
+    private CarRepository carRepository;  // DB access layer
 
-        return "hello from service!";
+
+    @Autowired
+    public CarServiceImpl(CarRepository carRepository) {
+        this.carRepository = carRepository;
+    }
+
+    @Override
+    public List<Car> getCars() {
+        return carRepository.findAll();
     }
 
     @Override
