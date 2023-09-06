@@ -9,10 +9,10 @@ import org.springframework.context.annotation.Configuration;
 import java.time.LocalDate;
 import java.util.List;
 
-@Configuration
+//@Configuration
 public class CarConfig {
 
-    @Bean
+//    @Bean
     CommandLineRunner commandLineRunner (CarRepository repository){
       return  args -> {
           Car peugeot = new Car();

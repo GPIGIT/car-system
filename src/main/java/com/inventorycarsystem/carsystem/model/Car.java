@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 @Entity
 @Table(name = "car_table")
@@ -53,5 +54,19 @@ public class Car {
 
     public void setCreated(LocalDate created) {
         this.created = created;
+    }
+
+    // generate to prevent HIBERNATE insert same data
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Car car = (Car) o;
+        return Objects.equals(manufacture, car.manufacture) && Objects.equals(model, car.model) ;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(manufacture, model);
     }
 }

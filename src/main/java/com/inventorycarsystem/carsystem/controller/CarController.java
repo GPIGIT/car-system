@@ -1,29 +1,33 @@
 package com.inventorycarsystem.carsystem.controller;
+//USE THIS CONTROLLER TO MANAGE with JSON REQUEST from Client
 
 import com.inventorycarsystem.carsystem.model.Car;
 import com.inventorycarsystem.carsystem.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 public class CarController {
-  // create service layer and try to call
-    @Autowired
-    private CarService carService;
 
-    @GetMapping("/")
-    public List<Car> getCar(){
-        return  carService.getCars();
+    private CarService carService;
+    @Autowired
+    public CarController(CarService carService) {
+        this.carService = carService;
     }
 
-    @PostMapping("/car")
-    public Car insertCar(@RequestBody Car car) {  //@RequestBody handle with JSON format from Client request
+    @GetMapping("/get/cars")
+    public List<Car> getAllCars(){
+       return  carService.getCars();
+    }
 
-       return carService.insertCar(car);
+
+
+    @PostMapping("/cars")
+    public Car insertCar(@RequestBody Car car){
+        carService.insertCar(car);
+        return car;
     }
 }
