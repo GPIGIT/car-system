@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CarServiceImpl implements CarService {
@@ -32,4 +33,18 @@ public class CarServiceImpl implements CarService {
     }
 
 
+
+    @Override
+    public Car searchById(Integer carId) {
+           Optional<Car> car = carRepository.findById(carId);
+           if(car.isPresent()){
+               return car.get();
+           }
+        return null;
+    }
+
+    @Override
+    public Car updateCar(Car car) {
+        return carRepository.save(car);
+    }
 }

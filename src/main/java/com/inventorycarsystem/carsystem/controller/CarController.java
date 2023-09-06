@@ -30,4 +30,16 @@ public class CarController {
         carService.insertCar(car);
         return car;
     }
+
+    @PutMapping("/cars/{carId}")
+    public Car updateCar(@RequestBody Car car, @PathVariable Integer carId ){
+        Car newData = car;
+        if(car != null) {
+           car =  carService.searchById(carId);
+           if(car != null) {
+               car = carService.updateCar(newData);
+           }
+        }
+          return   car;
+    }
 }
