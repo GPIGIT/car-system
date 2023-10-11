@@ -42,4 +42,19 @@ public class CarController {
         }
           return   car;
     }
+
+
+    @PatchMapping(path = "/cars/{carId}")   // URL = http://localhost:8080/cars/1?manufacture=Mazzaraty
+    public Car updatePartialCar(@PathVariable(name = "carId") Integer id,
+                                @RequestParam(required = false) String manufacture,
+                                @RequestParam(required = false)String model) {
+
+          Car searchCar =  carService.searchById(id);
+            if (searchCar != null) {
+
+              return   carService.updateCar(id, manufacture, model);
+            }
+
+        return searchCar;
+    }
 }

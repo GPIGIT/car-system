@@ -40,11 +40,29 @@ public class CarServiceImpl implements CarService {
            if(car.isPresent()){
                return car.get();
            }
-        return null;
+        return car.get();
     }
 
     @Override
     public Car updateCar(Car car) {
         return carRepository.save(car);
+    }
+
+    @Override
+    public Car updateCar(Integer id, String manufacture, String model) {
+            Optional<Car> carDB = carRepository.findById(id);
+            if(carDB.isPresent()){
+                Car changeCarDetail = carDB.get();
+                changeCarDetail.setManufacture(manufacture);
+                changeCarDetail.setModel(model);
+                changeCarDetail = carRepository.save(changeCarDetail);
+                return changeCarDetail;
+            }else {
+                try {
+                    throw new Exception("No such a card in our DB!");
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            }
     }
 }

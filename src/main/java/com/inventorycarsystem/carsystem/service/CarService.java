@@ -9,4 +9,6 @@ public interface CarService {
     public Car insertCar(Car car);
     Car searchById(Integer carId);
     Car updateCar(Car car);
+
+    Car  updateCar(Integer id, String manufacture, String model);
 }
